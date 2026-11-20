@@ -1,14 +1,9 @@
-# Core modules (withheld)
+# Core modules (not released)
 
-This directory will contain the core identity--motion decoupling modules:
+The following core modules are not released:
 
-- the per-token foreground--background bridge,
-- cross-attention value boosting,
-- reference-first-frame key--value anchoring,
-- the late identity lock,
-- the foreground edge guard,
-- the identity-orthogonal motion injection.
+- **Per-token decoding and identity enhancement** (per-token foreground/background bridge, value boosting, reference-first-frame KV anchoring, identity lock, and edge guard).
+- **Identity-orthogonal motion injection**.
+- **Inference acceleration** (endpoint-preserving schedule and LoRA merging).
 
-The editing LoRA is publicly released; the core modules will be released upon acceptance. The public pipeline calls
-`dualaxisstream.core.apply_edit`; the full release will replace the placeholder with the
-actual implementation without changing the interface.
+The editing LoRA is publicly released. The public pipeline calls `dualaxisstream.core.apply_edit`; the placeholder raises `CoreNotReleasedError`.

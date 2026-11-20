@@ -1,12 +1,9 @@
 """Core identity--motion decoupling modules.
 
-The implementation of the per-token foreground--background bridge, cross-attention
-value boosting, reference-first-frame key--value anchoring, the late identity lock, the
-foreground edge guard, and the identity-orthogonal motion injection is temporarily
-withheld. It will be released upon acceptance.
-
-The public pipeline calls :func:`apply_edit`; the full release will replace this
-placeholder with the actual implementation without changing the public interface.
+The implementation of the per-token decoding and identity enhancement, the
+identity-orthogonal motion injection, and the inference acceleration is not released.
+The public pipeline calls :func:`apply_edit`; this placeholder keeps the public interface
+stable.
 """
 
 from __future__ import annotations
@@ -20,17 +17,16 @@ class CoreNotReleasedError(NotImplementedError):
 
 _RELEASE_NOTE = (
     "The core identity-motion decoupling modules are not included in this "
-    "pre-release. They will be released upon acceptance. See "
-    "https://github.com/sqsiqi/DualAxisStream for updates."
+    "release. See https://github.com/sqsiqi/DualAxisStream for updates."
 )
 
 
 def apply_edit(**kwargs: Any) -> Any:
     """Apply the reference-guided edit.
 
-    This placeholder keeps the public call signature stable. The full release will
-    implement the streaming edit, the per-token bridge, the foreground identity
-    modules, and the identity-orthogonal motion injection here.
+    This placeholder keeps the public call signature stable. The released public
+    interface does not include the per-token decoding and identity enhancement,
+    the identity-orthogonal motion injection, or the inference acceleration.
     """
 
     raise CoreNotReleasedError(_RELEASE_NOTE)

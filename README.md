@@ -13,17 +13,13 @@ Qi Si, Zhao Zhang, Yang Zhao, Zhongqiu Zhao, Haijun Zhang, Meng Wang
 
 ## Pre-release note
 
-This is the official code release for the paper. The core identity--motion decoupling
-modules are temporarily withheld and will be released upon acceptance. The withheld
-part covers the per-token foreground--background bridge, cross-attention value boosting,
-reference-first-frame key--value anchoring, the late identity lock, the foreground edge
-guard, and the identity-orthogonal motion injection. The editing LoRA used in the paper is publicly released and is not part of the withheld set.
+This is the official code release for the paper. The following core modules are not released:
 
-This release provides the public inference interface, the paper's configuration, the
-benchmark protocol, and the base streaming pipeline. It is intended for inspection,
-integration, and reproducibility of the experimental setup. The `dualaxisstream` package
-exposes the same entry point that the full release will use; the core hook currently
-raises a clear `CoreNotReleasedError`.
+- **Per-token decoding and identity enhancement**: the per-token foreground/background bridge, value boosting, reference-first-frame KV anchoring, identity lock, and edge guard.
+- **Identity-orthogonal motion injection**.
+- **Inference acceleration**: the endpoint-preserving schedule and LoRA merging.
+
+The editing LoRA used in the paper is publicly released and is not part of the withheld set. This release provides the public inference interface, configuration, and base streaming pipeline. The `dualaxisstream` package exposes the public entry point; the core hook raises a clear `CoreNotReleasedError`.
 
 ## Highlights
 
@@ -106,8 +102,8 @@ The script downloads:
 - `Wan-AI/Wan2.1-T2V-1.3B`
 - `Efficient-Large-Model/LongLive`
 
-The editing LoRA is publicly released. The core editing modules are part of the withheld
-release and will be uploaded upon acceptance.
+The editing LoRA is publicly released. The three core modules listed above are not included
+in this release.
 
 ## Running
 
@@ -122,15 +118,14 @@ python -m dualaxisstream.demo \
 ```
 
 The demo validates the inputs, loads the paper configuration, and calls the core hook.
-Until the core release, it stops with:
+The core hook stops with:
 
 ```text
 CoreNotReleasedError: The core identity-motion decoupling modules are not included in
-this pre-release. They will be released upon acceptance.
+this release.
 ```
 
-The same interface will be used by the full release, so the command and configuration do
-not need to change after the core modules are added.
+The public interface is stable; the command and configuration do not change when the core modules are available.
 
 ## Evaluation protocol
 
@@ -145,22 +140,20 @@ Nine metrics are grouped into four families: foreground editing fidelity (DreamS
 motion fidelity (mEPE), background preservation (BG-LPIPS, BG-DINO, BG-SSIM, BG-PSNR),
 and consistency (coverage@0.30, temporal consistency). All metrics use 16 uniformly
 sampled frames per video. See [`docs/BENCHMARK.md`](docs/BENCHMARK.md) for the exact
-definitions and construction details. Evaluation scripts and metric implementations are not
-included in this release.
+definitions and construction details.
 
 ## Release plan
 
-| Component | This release | Full release |
-| --- | --- | --- |
-| Inference interface and configs | Yes | Yes |
-| Base streaming pipeline | Yes | Yes |
-| Benchmark protocol | Yes | Yes |
-| Core identity--motion modules | No | Yes |
-| Editing LoRA | Public | Public |
-| Training scripts | Partial | Yes |
-| Evaluation scripts and metrics | Not included | Not included |
+| Component | Status |
+| --- | --- |
+| Public inference interface and configs | Released |
+| Base streaming pipeline | Released |
+| Per-token decoding and identity enhancement | Not released |
+| Identity-orthogonal motion injection | Not released |
+| Inference acceleration | Not released |
+| Editing LoRA | Publicly available |
 
-The core modules will be released after the paper is accepted. The editing LoRA is publicly available.
+The three core modules listed above are not released. The editing LoRA is publicly available.
 
 ## Acknowledgements
 

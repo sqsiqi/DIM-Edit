@@ -46,8 +46,8 @@ class DualAxisStreamPipeline:
     ) -> Any:
         """Edit ``source_video`` according to ``reference_image`` and ``prompt``.
 
-        The inputs are validated before the core hook is called. The full release will
-        run the streaming edit and write the result to ``output_path``.
+        The inputs are validated before the core hook is called. The core hook is not
+        included in this release.
         """
 
         source_info = validate_video(source_video)
