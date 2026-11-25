@@ -1,14 +1,14 @@
-# DualAxisStream
+# DIM-Edit
 
-**Reference-Guided Video Editing via Few-Step Streaming Video Generation with Disentangled Identity and Motion**
+**DIM-Edit: Decoupling Identity and Motion for Reference-Guided Streaming Video Editing**
 
 Qi Si, Zhao Zhang, Yang Zhao, Zhongqiu Zhao, Haijun Zhang, Meng Wang
 
-[![Code](https://img.shields.io/badge/GitHub-Code-blue?style=flat-square&logo=github&logoColor=white)](https://github.com/sqsiqi/DualAxisStream)
-[![Status](https://img.shields.io/badge/Status-Pre--release-orange?style=flat-square)](https://github.com/sqsiqi/DualAxisStream)
+[![Code](https://img.shields.io/badge/GitHub-Code-blue?style=flat-square&logo=github&logoColor=white)](https://github.com/sqsiqi/DIM-Edit)
+[![Status](https://img.shields.io/badge/Status-Pre--release-orange?style=flat-square)](https://github.com/sqsiqi/DIM-Edit)
 
 <p align="center">
-  <img src="assets/teaser.png" width="95%" alt="Identity-motion entanglement versus decoupled streaming editing">
+  <img src="assets/teaser.png" width="55%" alt="DIM-Edit versus existing streaming editing">
 </p>
 
 ## Pre-release note
@@ -19,7 +19,7 @@ This is the official code release for the paper. The following core modules are 
 - **Identity-orthogonal motion injection**.
 - **Inference acceleration**: the endpoint-preserving schedule and LoRA merging.
 
-The editing LoRA used in the paper is publicly released and is not part of the withheld set. This release provides the public inference interface, configuration, and base streaming pipeline. The `dualaxisstream` package exposes the public entry point; the core hook raises a clear `CoreNotReleasedError`.
+The editing LoRA used in the paper is publicly released and is not part of the withheld set. This release provides the public inference interface, configuration, and base streaming pipeline. The `dimedit` package exposes the public entry point; the core hook raises a clear `CoreNotReleasedError`.
 
 ## Highlights
 
@@ -38,7 +38,7 @@ The editing LoRA used in the paper is publicly released and is not part of the w
 ## Method
 
 <p align="center">
-  <img src="assets/overview.png" width="95%" alt="DualAxisStream overview">
+  <img src="assets/overview.png" width="95%" alt="DIM-Edit overview">
 </p>
 
 A source branch and a noisy target branch are processed in parallel by a streaming
@@ -62,12 +62,12 @@ See [`docs/METHOD.md`](docs/METHOD.md) for the full method description and
 ## Repository layout
 
 ```text
-dualaxisstream/                  Public interface and core hook
+dimedit/                  Public interface and core hook
   core/                         Placeholder for the withheld core modules
-  pipeline.py                   DualAxisStreamPipeline
+  pipeline.py                   DIMEditPipeline
   io.py                         Video/image validation helpers
   demo.py                       Command-line demo
-configs/dualaxisstream.yaml      Paper hyper-parameters
+configs/dimedit.yaml      Paper hyper-parameters
 third_party/LongLive_StreamEdit Base streaming pipeline (Apache-2.0)
 docs/                           Method and benchmark notes
 scripts/                        Checkpoint download and demo scripts
@@ -77,8 +77,8 @@ assets/                         Teaser and overview figures
 ## Environment
 
 ```bash
-conda create -n dualaxisstream python=3.12 -y
-conda activate dualaxisstream
+conda create -n dimedit python=3.12 -y
+conda activate dimedit
 
 # Choose the PyTorch command appropriate for your CUDA version (example for CUDA 12.8).
 pip install torch==2.8.0 torchvision==0.23.0 --index-url https://download.pytorch.org/whl/cu128
@@ -110,7 +110,7 @@ in this release.
 The public entry point is:
 
 ```bash
-python -m dualaxisstream.demo \
+python -m dimedit.demo \
   --source path/to/source.mp4 \
   --reference path/to/reference.png \
   --prompt "Change the city bus to a double-decker bus." \
@@ -171,8 +171,8 @@ cite the corresponding works when using this code.
 If you find this work useful, please cite:
 
 ```bibtex
-@article{si2026dualaxisstream,
-  title   = {Reference-Guided Video Editing via Few-Step Streaming Video Generation with Disentangled Identity and Motion},
+@article{si2026dimedit,
+  title   = {DIM-Edit: Decoupling Identity and Motion for Reference-Guided Streaming Video Editing},
   author  = {Si, Qi and Zhang, Zhao and Zhao, Yang and Zhao, Zhongqiu and Zhang, Haijun and Wang, Meng},
   journal = {arXiv preprint},
   year    = {2026}

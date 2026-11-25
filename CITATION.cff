@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you find this work useful, please cite the paper."
-title: "Reference-Guided Video Editing via Few-Step Streaming Video Generation with Disentangled Identity and Motion"
+title: "DIM-Edit: Decoupling Identity and Motion for Reference-Guided Streaming Video Editing"
 authors:
   - family-names: "Si"
     given-names: "Qi"
@@ -15,11 +15,11 @@ authors:
   - family-names: "Wang"
     given-names: "Meng"
 year: 2026
-url: "https://github.com/sqsiqi/DualAxisStream"
+url: "https://github.com/sqsiqi/DIM-Edit"
 license: "Apache-2.0"
 preferred-citation:
   type: article
-  title: "Reference-Guided Video Editing via Few-Step Streaming Video Generation with Disentangled Identity and Motion"
+  title: "DIM-Edit: Decoupling Identity and Motion for Reference-Guided Streaming Video Editing"
   authors:
     - family-names: "Si"
       given-names: "Qi"

@@ -1,5 +1,5 @@
-# DualAxisStream configuration (paper defaults)
-# The core editing modules and the task LoRA are released separately.
+# DIM-Edit configuration (paper defaults)
+# The core editing modules are withheld; the editing LoRA is publicly released.
 
 model:
   base: "LongLive-Wan2.1-1.3B"

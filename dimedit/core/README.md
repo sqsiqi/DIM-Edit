@@ -6,4 +6,4 @@ The following core modules are not released:
 - **Identity-orthogonal motion injection**.
 - **Inference acceleration** (endpoint-preserving schedule and LoRA merging).
 
-The editing LoRA is publicly released. The public pipeline calls `dualaxisstream.core.apply_edit`; the placeholder raises `CoreNotReleasedError`.
+The editing LoRA is publicly released. The public pipeline calls `dimedit.core.apply_edit`; the placeholder raises `CoreNotReleasedError`.

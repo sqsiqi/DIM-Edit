@@ -17,7 +17,7 @@ class CoreNotReleasedError(NotImplementedError):
 
 _RELEASE_NOTE = (
     "The core identity-motion decoupling modules are not included in this "
-    "release. See https://github.com/sqsiqi/DualAxisStream for updates."
+    "release. See https://github.com/sqsiqi/DIM-Edit for updates."
 )
 
 
