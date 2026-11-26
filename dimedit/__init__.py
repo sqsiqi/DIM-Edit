@@ -1,6 +1,6 @@
 """DIM-Edit public package.
 
-The core identity--motion decoupling modules are withheld in this pre-release.
+The core identity-motion decoupling modules are withheld in this pre-release.
 See :mod:`dimedit.core` for the release note and the core hook.
 """
 

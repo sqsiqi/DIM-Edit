@@ -8,5 +8,5 @@ This repository contains code derived from the following open-source projects:
 - Wan2.1 (https://github.com/Wan-Video/Wan2.1), Apache License 2.0.
 
 The vendored base pipeline in third_party/LongLive_StreamEdit retains its original
-license and attribution. The core identity--motion decoupling modules are not part of this pre-release.
-The editing LoRA is publicly released.
+license and attribution. The core identity–motion decoupling modules are not part of
+this pre-release. The editing LoRA is publicly released.

@@ -1,7 +1,7 @@
-"""Core identity--motion decoupling modules.
+"""Core identity-motion decoupling modules.
 
-The implementation of the per-token decoding and identity enhancement, the
-identity-orthogonal motion injection, and the inference acceleration is not released.
+The implementation of per-token decoupling and identity enhancement, identity-orthogonal
+motion injection, and few-step streaming acceleration is not released.
 The public pipeline calls :func:`apply_edit`; this placeholder keeps the public interface
 stable.
 """
@@ -25,8 +25,8 @@ def apply_edit(**kwargs: Any) -> Any:
     """Apply the reference-guided edit.
 
     This placeholder keeps the public call signature stable. The released public
-    interface does not include the per-token decoding and identity enhancement,
-    the identity-orthogonal motion injection, or the inference acceleration.
+    interface does not include per-token decoupling and identity enhancement,
+    identity-orthogonal motion injection, or few-step streaming acceleration.
     """
 
     raise CoreNotReleasedError(_RELEASE_NOTE)

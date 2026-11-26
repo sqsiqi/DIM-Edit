@@ -17,10 +17,10 @@ sampling:
 
 editing:
   blend_power: 2.0
-  fg_boost: 2.0
+  trigger_reweight: 2.0
   mask_layers: 20
   mask_threshold: 0.0
-  ffkv_repeat: 3
+  reference_fg_kv_repeat: 3
   identity_lock:
     start: 0.60
     strength: 0.60

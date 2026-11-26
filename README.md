@@ -15,22 +15,26 @@ Qi Si, Zhao Zhang, Yang Zhao, Zhongqiu Zhao, Haijun Zhang, Meng Wang
 
 This is the official code release for the paper. The following core modules are not released:
 
-- **Per-token decoding and identity enhancement**: the per-token foreground/background bridge, value boosting, reference-first-frame KV anchoring, identity lock, and edge guard.
-- **Identity-orthogonal motion injection**.
-- **Inference acceleration**: the endpoint-preserving schedule and LoRA merging.
+- **Per-token decoupling and identity enhancement**: the foreground-conditioned
+  query–key bridge, trigger reweighting, reference foreground KV anchoring, and the
+  conditional identity lock.
+- **Identity-orthogonal motion injection**: the projected source velocity correction with
+  boundary-aware fusion (edge guard).
+- **Few-step streaming acceleration**: endpoint-preserving eight-step sampling and
+  pre-inference LoRA merging.
 
-The editing LoRA used in the paper is publicly released and is not part of the withheld set. This release provides the public inference interface, configuration, and base streaming pipeline. The `dimedit` package exposes the public entry point; the core hook raises a clear `CoreNotReleasedError`.
+The editing LoRA is publicly released and is not part of the withheld set. This release
+provides the public inference interface, configuration, and base streaming pipeline. The `dimedit` package exposes the public entry point; the core hook raises a clear `CoreNotReleasedError`.
 
 ## Highlights
 
-- Reference-image-guided video editing on a few-step streaming generator.
-- A per-token foreground--background bridge that replaces the global blending schedule
-  of streaming editors.
-- Foreground identity injection through value boosting, reference-first-frame KV
-  anchoring, and a late identity lock.
+- Reference-guided video editing on a few-step streaming generator.
+- Per-token decoupling through a foreground-conditioned query–key bridge.
+- Foreground identity enhancement through trigger reweighting, reference foreground KV
+  anchoring, and a conditional identity lock.
 - Identity-orthogonal motion injection that restores source dynamics without pulling the
   appearance back toward the source.
-- An endpoint-preserving 8-step schedule and merged LoRA weights.
+- Endpoint-preserving eight-step sampling and pre-inference LoRA merging.
 - No per-video optimization. The method is $1.64\times$ faster than StreamEdit with
   $30.8\%$ less peak memory, while giving the best foreground identity, background
   preservation, and coverage on the two benchmarks used in the paper.
@@ -41,20 +45,23 @@ The editing LoRA used in the paper is publicly released and is not part of the w
   <img src="assets/overview.png" width="95%" alt="DIM-Edit overview">
 </p>
 
-A source branch and a noisy target branch are processed in parallel by a streaming
-diffusion transformer. The foreground enhancement group, the edge guard, and the
-identity-orthogonal motion injection act on the dual-branch features. The background is
-preserved structurally by the source branch, so no explicit background anchor is needed.
-An endpoint-preserving few-step schedule and merged LoRA weights keep inference cheap.
+A source branch and a noisy target branch are processed in parallel by a shared-weight
+causal diffusion transformer. A foreground-conditioned query–key bridge performs
+per-token decoupling, while trigger reweighting, reference foreground KV anchoring, and a
+conditional identity lock strengthen the edited identity. Identity-orthogonal motion
+injection corrects the target velocity, and the source branch preserves the background
+structurally. Endpoint-preserving eight-step sampling and pre-inference LoRA merging keep
+inference cheap.
 
 The design follows two observations from the paper:
 
-1. Under any global blending schedule, the ratio between background deviation and
-   foreground edit energy is invariant to the blend strength. The per-token bridge breaks
-   this invariance.
-2. The source velocity correction contains a motion component and an appearance
-   component. Projecting out the edit direction leaves a motion-only correction that can
-   be injected without disturbing the edited identity.
+1. A single global source–target blend rate must serve foreground and background tokens at
+   once, so stronger editing and stronger preservation conflict. DIM-Edit estimates
+   foreground support from the trigger phrase and assigns the target contribution per
+   token.
+2. The source velocity correction contains an appearance component and a motion component.
+   Removing the component aligned with the local edit direction leaves a motion-dominant
+   residual that can be injected without pulling the appearance back toward the source.
 
 See [`docs/METHOD.md`](docs/METHOD.md) for the full method description and
 [`docs/BENCHMARK.md`](docs/BENCHMARK.md) for the benchmark construction and metrics.
@@ -148,9 +155,9 @@ definitions and construction details.
 | --- | --- |
 | Public inference interface and configs | Released |
 | Base streaming pipeline | Released |
-| Per-token decoding and identity enhancement | Not released |
+| Per-token decoupling and identity enhancement | Not released |
 | Identity-orthogonal motion injection | Not released |
-| Inference acceleration | Not released |
+| Few-step streaming acceleration | Not released |
 | Editing LoRA | Publicly available |
 
 The three core modules listed above are not released. The editing LoRA is publicly available.

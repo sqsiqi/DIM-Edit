@@ -13,17 +13,15 @@ the reference condition.
 
 Ref-Five-Bench-B contains 148 videos:
 
-- 98 FiVE-Bench sources with every replacement target re-authored (near-category
-  substitutions such as cat to tiger), so prompts and references differ from A.
-- 25 gameplay clips from `gaming-500-hours`, recorded at 1080p and cropped to 5 seconds
-  at 864 x 480.
-- 25 product clips from LoVoRA/MSRVTT, covering apparel, accessories, eyewear, kitchenware,
-  and food.
+- 98 FiVE-Bench sources with re-authored replacement targets, so prompts and references
+  differ from A.
+- 25 gameplay clips from `gaming-500-hours`.
+- 25 product clips from LoVoRA/MSRVTT.
 
-For the new clips, reference images are rendered with Z-Image-Turbo on a white background,
+For the new clips, reference images are rendered with Z-Image on a white background,
 foreground masks are obtained per frame with GroundingDINO and SAM2, and the edited first
-frame is produced by FLUX.1-Fill-dev with Insert-Anything and Redux conditioning. All
-videos are 864 x 480, 16 fps, H.264, and silent. Prompts follow the 13-field FiVE schema.
+frame is produced by FLUX.1-Fill with Insert-Anything and Redux conditioning. Generation
+uses the paper setting of 832 x 480. Prompts follow the FiVE schema.
 
 ## Metrics
 
